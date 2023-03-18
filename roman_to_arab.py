@@ -26,6 +26,10 @@ def romanToInt(s: str) -> int:
     res = 0
     idx = 1
     while idx <= len(s):
+        if s[idx] not in symbolToIntDict:
+            raise ValueError(
+                'Римское число должно только из латинских букв IVXLCDM'
+            )
         if idx == len(s):
             res += ROMAN_TO_INT[s[idx - 1]]
             break
@@ -39,18 +43,22 @@ def romanToInt(s: str) -> int:
     return res
 
 
-def romanToInt_2(s: str) -> int:
-    prevValue = symbolToIntDict["M"]
-    totalValue = 0
+def roman_to_int_2(s: str) -> int:
+    prev_value = symbolToIntDict["M"]
+    total_value = 0
     for c in s:
-        currentValue = symbolToIntDict[c]
-        if prevValue < currentValue:
-            totalValue -= prevValue * 2
-        totalValue += currentValue
-        prevValue = currentValue
-    return totalValue
+        if c not in symbolToIntDict:
+            raise ValueError(
+                'Римское число должно только из заглавных латинских букв'
+            )
+        current_value = symbolToIntDict[c]
+        if prev_value < current_value:
+            total_value -= prev_value * 2
+        total_value += current_value
+        prev_value = current_value
+    return total_value
 
 
 if __name__ == '__main__':
     num = 'MCMXCIV'
-    print(romanToInt_2(num))
+    print(roman_to_int_2(num))
