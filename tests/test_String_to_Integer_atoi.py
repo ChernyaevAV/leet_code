@@ -2,32 +2,26 @@ from solutions.String_to_Integer_atoi import myAtoi
 
 
 class TestMyAtoi:
-    @staticmethod
-    def test_words_after():
+    def test_words_after(self):
         res = myAtoi('4193 with words')
         assert res == 4193
 
-    @staticmethod
-    def test_space_before_nums():
+    def test_space_before_nums(self):
         res = myAtoi('   -42')
         assert res == -42
 
-    @staticmethod
-    def test_plus_before_nums():
+    def test_plus_before_nums(self):
         res = myAtoi('+53')
         assert res == 53
 
-    @staticmethod
-    def test_nums_after_words():
+    def test_nums_after_words(self):
         res = myAtoi('words and 987')
         assert res == 0
 
-    @staticmethod
-    def test_dot_in_string():
+    def test_dot_in_string(self):
         res = myAtoi('-3.14159')
         assert res == -3
 
-    @staticmethod
-    def test_more_symbols_before_nums():
+    def test_more_symbols_before_nums(self):
         res = myAtoi('-+15')
         assert res == 0

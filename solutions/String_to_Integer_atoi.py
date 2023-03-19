@@ -9,8 +9,8 @@ def myAtoi(s: str) -> int:
         if elem not in '0123456789':
             break
         res = res * 10 + int(elem)
-        if int(res) * znak >= 2 ** 31 - 1:
+        if res * znak >= 2 ** 31 - 1:
             return 2 ** 31 - 1
-        if int(res) * znak <= -2 ** 31:
+        if res * znak <= -2 ** 31:
             return -2 ** 31
-    return int(res) * znak
+    return res * znak
