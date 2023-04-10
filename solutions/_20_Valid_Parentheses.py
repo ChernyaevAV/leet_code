@@ -1,6 +1,6 @@
 import pytest
 
-def isValid(s: str) -> bool:
+def isValid_2(s: str) -> bool:
     valid_parents_open = '([{'
     valid_parents_closed = ')]}'
     valid_parents = ['()', '[]', '{}']
@@ -13,7 +13,20 @@ def isValid(s: str) -> bool:
                 stack.pop()
             else:
                 return False
+    return len(stack) == 0
 
+
+def isValid(s: str) -> bool:
+    stack = []
+    valid_dict = {')': '(', ']': '[', '}': '{'}
+    for char in s:
+        if char in valid_dict:
+            if stack and stack[-1] == valid_dict[char]:
+                stack.pop()
+            else:
+                return False
+        else:
+            stack.append(char)
     return len(stack) == 0
 
 
