@@ -12,16 +12,6 @@ from typing import List
 #     return stones[-1] if len(stones) == 1 else 0
 
 
-def lastStoneWeight(stones: List[int]) -> int:
-    while len(stones) > 1:
-        stones = sorted(stones)
-        x = stones.pop()
-        y = stones.pop()
-        if x-y != 0:
-            stones.append(x-y)
-    return stones[-1] if len(stones) == 1 else 0
-
-
 # def lastStoneWeight(stones: List[int]) -> int:
 #     while len(stones) > 1:
 #         stones = sorted(stones)
@@ -41,12 +31,23 @@ def lastStoneWeight(stones: List[int]) -> int:
 
 
 
+def lastStoneWeight(stones: List[int]) -> int:
+    while len(stones) > 1:
+        stones = sorted(stones)
+        x = stones.pop()
+        y = stones.pop()
+        if x-y != 0:
+            stones.append(x-y)
+    return stones[-1] if len(stones) == 1 else 0
+
+
+
 if __name__ == '__main__':
     stones = [2, 7, 4, 1, 8, 1]
     assert lastStoneWeight(stones) == 1
 
-    # stones = [1]
-    # assert lastStoneWeight(stones) == 1
-    #
-    # stones = []
-    # assert lastStoneWeight(stones) == 0
+    stones = [1]
+    assert lastStoneWeight(stones) == 1
+
+    stones = []
+    assert lastStoneWeight(stones) == 0
