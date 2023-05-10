@@ -1,15 +1,24 @@
 from typing import List
 
 def searchMatrix(matrix: List[List[int]], target: int) -> bool:
-    col = len(matrix[0])-1
-    row = 0
-    while col >= 0 and row <= len(matrix)-1:
-        if target == matrix[row][col]:
+    row = len(matrix)
+    col = len(matrix[0])
+
+    low = 0
+    high = (row * col) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+
+        i = mid // col
+        j = mid % col
+
+        if matrix[i][j] == target:
             return True
-        elif target < matrix[row][col]:
-           col -= 1
+        elif matrix[i][j] < target:
+            low = mid + 1
         else:
-            row += 1
+            high = mid - 1
     return False
 
 if __name__ == '__main__':
