@@ -1,19 +1,18 @@
+import pytest
+
 def lengthOfLastWord(s: str) -> int:
     return len(s.strip().split()[-1])
 
 
-if __name__ == '__main__':
+def test_one_space():
     s = "Hello World"
-    res = lengthOfLastWord(s)
-    answer = 5
-    assert res == answer, f'ожидали {answer}, получили {res}'
+    assert lengthOfLastWord(s) == 5
 
+def test_space_in_tail():
     s = "   fly me   to   the moon  "
-    res = lengthOfLastWord(s)
-    answer = 4
-    assert res == answer, f'ожидали {answer}, получили {res}'
+    assert lengthOfLastWord(s) == 4
 
+def test_more_words():
     s = "luffy is still joyboy"
-    res = lengthOfLastWord(s)
-    answer = 6
-    assert res == answer, f'ожидали {answer}, получили {res}'
+    assert lengthOfLastWord(s) == 6
+
