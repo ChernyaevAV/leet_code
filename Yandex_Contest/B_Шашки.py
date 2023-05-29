@@ -47,7 +47,10 @@ def input_data() -> Dict:
     return data
 
 
-def is_valid_move(coord_w, coord_b, data) -> bool:
+def is_valid_move(coord_w: List[int],
+                  coord_b: List[int],
+                  data: Dict
+                  ) -> bool:
     w_r = coord_w[0]
     w_c = coord_w[1]
     b_r = coord_b[0]
@@ -78,7 +81,6 @@ def is_valid_move(coord_w, coord_b, data) -> bool:
                 )
         ):
             return True
-
     elif data['move'] == 'black':
         if (
                 ((b_r - w_r == -1 and b_c - w_c == -1) and
@@ -191,7 +193,7 @@ class TestCase:
         assert res == answer
 
     def test_white_10(self):
-        data = {'board': [8, 8], 'white': [[8, 8], [6,6]], 'black': [[7, 7]],
+        data = {'board': [8, 8], 'white': [[8, 8], [6, 6]], 'black': [[7, 7]],
                 'move': 'white'}
         answer = 'No'
         res = search_valid_move(data)
@@ -247,14 +249,15 @@ class TestCase:
         assert res == answer
 
     def test_black_8(self):
-        data = {'board': [8, 8], 'white': [[8, 8], [6,6]], 'black': [[7, 7]],
+        data = {'board': [8, 8], 'white': [[8, 8], [6, 6]], 'black': [[7, 7]],
                 'move': 'black'}
         answer = 'Yes'
         res = search_valid_move(data)
         assert res == answer
 
     def test_black_9(self):
-        data = {'board': [8, 8], 'white': [[3, 3], [5, 5], [7, 2], [6, 3], [6, 5]],
+        data = {'board': [8, 8],
+                'white': [[3, 3], [5, 5], [7, 2], [6, 3], [6, 5]],
                 'black': [[5, 4]],
                 'move': 'black'}
         answer = 'Yes'
