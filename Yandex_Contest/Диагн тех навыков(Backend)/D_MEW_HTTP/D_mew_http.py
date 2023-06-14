@@ -58,13 +58,15 @@ import urllib.request
 server_url = 'http://127.0.0.1:7777/'
 
 with open('input.txt', 'r', encoding='utf-8') as file:
-    param = ''
+    param = []
     for i in range(4):
-        param += file.readline().strip('\n') + ','
-    param = param[:-1]
-    headers = {'X-Cat-Variable': param}
-    req = urllib.request.Request(server_url, headers=headers, method='MEW')
+        param.append(file.readline().strip('\n'))
+param = ','.join(sorted(param))
+headers = {'X-Cat-Variable': param}
+req = urllib.request.Request(server_url, headers=headers, method='MEW')
 
-    with urllib.request.urlopen(req) as response:
-        print(*response.headers.get_all('X-Cat-Value'), sep='\n')
+with urllib.request.urlopen(req) as response:
+    res = response.headers.get_all('X-Cat-Value')
 
+for elem in sorted(res):
+    print(elem)

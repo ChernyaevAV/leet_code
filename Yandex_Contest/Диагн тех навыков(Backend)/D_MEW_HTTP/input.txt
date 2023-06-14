@@ -1,4 +1,4 @@
-Windows
-Linux
-Data
-Forward
+Window
+Bird
+Food
+Human
