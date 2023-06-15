@@ -1,6 +1,8 @@
 # Definition for a binary tree node.
 from typing import Optional
 
+import pytest
+
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -26,24 +28,36 @@ class Solution:
         return minDifference
 
 
+def to_binary_tree(items: list[int]) -> TreeNode:
+    """Создает двоичное дерево из списка значений узлов."""
+    n = len(items)
+    if n == 0:
+        return None
+
+    def get_tree(idx: int = 0) -> TreeNode:
+        """Рекурсивная функция для формирования двоичного дерева"""
+        if n <= idx or items[idx] is None:
+            return None
+
+        node = TreeNode(items[idx])
+        node.left = get_tree(2 * idx + 1)
+        node.right = get_tree(2 * idx + 2)
+        return node
+
+    return get_tree()
+
+class TestCase:
+    def test1(self):
+        root = [4, 2, 6, 1, 3]
+        tree = to_binary_tree(root)
+        ans = 1
+        assert Solution().getMinimumDifference(tree) == ans
+
+    def test2(self):
+        root = [1, 0, 48, None, None, 12, 49]
+        tree = to_binary_tree(root)
+        ans = 1
+        assert Solution().getMinimumDifference(tree) == ans
+
 if __name__ == '__main__':
-    # root = [4,2,6,1,3]
-    node5 = TreeNode(3, None, None)
-    node4 = TreeNode(1, None, None)
-    node3 = TreeNode(2, node4, node5)
-    node2 = TreeNode(6, None, None)
-    node1 = TreeNode(4, node3, node2)
-
-    ans = Solution()
-    assert ans.getMinimumDifference(node1) == 1
-
-    root = [1, 0, 48, None, None, 12, 49]
-    node1 = TreeNode(0, None, None)
-    node2 = TreeNode(12, None, None)
-    node3 = TreeNode(49, None, None)
-    node4 = TreeNode(48, node2, node3)
-    node5 = TreeNode(1, node1, node4)
-
-
-    ans = Solution()
-    assert ans.getMinimumDifference(node5) == 1
+    pytest.main()
