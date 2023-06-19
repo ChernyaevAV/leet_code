@@ -3,8 +3,8 @@
 Привет всем, в данном репозитории я решаю задачи с leetcode.com.
 Также тут есть решения задач из Яндекс Контест.
 
-## Технологии
-Python
+## Стек технологий
+- Python
 
 ## Кейсы
 - [Leetcode](https://github.com/ChernyaevAV/leet_code/tree/master/solutions)
