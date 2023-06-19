@@ -9,5 +9,5 @@ Python
 ## Кейсы
 - [Leetcode](https://github.com/ChernyaevAV/leet_code/tree/master/solutions)
 - [ЯндексКонтест](https://github.com/ChernyaevAV/leet_code/tree/master/Yandex_Contest)
-"""- [TON]()"""
+
 
