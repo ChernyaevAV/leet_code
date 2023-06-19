@@ -7,7 +7,7 @@
 Python
 
 ## Кейсы
-- [Leetcode]()
+- [Leetcode](https://github.com/ChernyaevAV/leet_code/tree/master/solutions)
 - [ЯндексКонтест]()
 - [TON]()
 
