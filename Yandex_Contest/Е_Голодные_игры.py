@@ -22,11 +22,19 @@ class Text:
         words = list(map(lambda w: w.strip('.,!@#$%^&*:;'), words))
         return max(words)
 
+    def often_word(self):
+        result = {}
+        words = self.text.split(' ')
+        words = list(map(lambda w: w.strip('.,!@#$%^&*:;'), words))
+        for word in words:
+            result[word] = result.get(word, 0) + 1
+        return max(result, key=lambda key: result.get(key))
+
     def get_spec_symbols(self):
         spec = list(map(lambda w: w if w in punctuation else '', self.text))
-        return ''.join(spec)
+        return len(spec)
 
-    def palindroms(self):
+    def get_palindroms(self):
         words = self.text.split(' ')
         words = list(map(lambda w: w.strip('.,!@#$%^&*:;'), words))
         palindroms = [p for p in words if p == p[::-1] and len(p)>1]
@@ -47,7 +55,10 @@ if __name__ == '__main__':
     assert Text(s3).longest_word() == ''
 
     s4 = 'aba dfg fgf ghhg a'
-    assert Text(s4).palindroms() == ['aba', 'fgf', 'ghhg']
+    assert Text(s4).get_palindroms() == ['aba', 'fgf', 'ghhg']
 
-    s3 = '!@#$%'
-    assert Text(s3).get_spec_symbols() == '!@#$%'
+    s5 = '!@#$%'
+    assert Text(s5).get_spec_symbols() == 5
+
+    s6 = 'ab ab sd sd sd'
+    assert Text(s6).often_word() == 'sd'
