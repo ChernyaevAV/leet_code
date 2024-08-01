@@ -1,30 +1,48 @@
-from collections import namedtuple
-from functools import reduce
-from itertools import permutations, combinations
+
+from datetime import datetime
+from itertools import combinations
 
 
-class Number(namedtuple('Number', 'idx num')):
-    pass
+def binary_search(lst, target):
+    low = 0
+    high = len(lst) - 1
 
-    def __repr__(self):
-        return f'{self.num}'
+    while low <= high:
+        mid = (low + high) // 2
+        guess = lst[mid]
+
+        if guess == target:
+            return True
+        if guess > target:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return False
 
 
-def data_load():
-    n = int(input().strip())
-    num_list = input().split()
-    return n, num_list
+def find_common_digit(comb):
+    if comb[0] <= comb[1]:
+        set_min = set(str(comb[0]))
+        set_max = set(str(comb[1]))
+    else:
+        set_min = set(str(comb[1]))
+        set_max = set(str(comb[0]))
+
+    for element in set_min:
+        if element in set_max:
+            return True
+    return False
 
 
 def main():
-    nums = [0, 0, 0]
-    list_comb = combinations(nums, 2)
-    result = map(lambda x: len(set(str(x[0])).intersection(set(str(x[1])))) > 0, list_comb)
+    # nums = [103, 123, 20, 4567]
+    nums = range(3_000)
+    combs = combinations(nums, 2)
+    result = [find_common_digit(comb) for comb in combs]
     return sum(result)
 
 
 if __name__ == '__main__':
-    # n, nums = data_load()
-    res = main()
-
-    print(res)                      # ToDO не проходят тесты по времени (3с)
+    start = datetime.now()
+    print(main())
+    print((datetime.now() - start).total_seconds())
