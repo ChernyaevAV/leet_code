@@ -1,3 +1,4 @@
 .idea
 /venv/
 /Yandex_Contest/training.py
+/poetry.lock
