@@ -1,33 +1,17 @@
-def get_nok(x, y):
+def get_nok(a, b):
     """ Возвращает Наименьшее Общее Кратное."""
-    greater = max(x, y)
-    while True:
-        if (greater % x == 0) and (greater % y == 0):
-            nok = greater
-            break
-        greater += 1
-    return nok
+    return a * b // get_nod(a, b)
 
-def get_nod(x, y):
+
+def get_nod(a, b):
     """Возвращает Наибольший Общий Делитель"""
-    # smaller = min(x, y)
-    # for i in range(1, smaller + 1):
-    #     if  (x % i == 0) and (y % i == 0):
-    #         nod = i
-    # return nod
-    while x and y:
-        if x>=y :
-            x %= y
-        else:
-            y %= x
-    return x | y
+    while b:
+        a, b = b, a % b
+    return a
 
 
-
-def main(nums):
-    # nums = tuple(map(int, input().split()))
-    nod = nums[0]
-    nok = nums[1]
+def main():
+    nod, nok = tuple(map(int, input().split()))
     mult = nok * nod
     res = []
 
@@ -37,11 +21,9 @@ def main(nums):
         b = mult // a
         if get_nod(a, b) == nod:
             res.append((a, b))
-
     print(len(res))
-    print(res)
-
 
 
 if __name__ == '__main__':
-    main([5, 10])
+    main()
+

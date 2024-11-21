@@ -1,6 +1,17 @@
 
-from datetime import datetime
+import time
 from itertools import combinations
+
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        _start = time.time()
+        result = func(*args, **kwargs)
+        _end = time.time()
+        print(f"Время выполнения: {_end - _start:.2f}")
+        return result
+
+    return wrapper
 
 
 def binary_search(lst, target):
@@ -34,15 +45,14 @@ def find_common_digit(comb):
     return False
 
 
+@timer
 def main():
     # nums = [103, 123, 20, 4567]
-    nums = range(3_000)
+    nums = range(3_00)
     combs = combinations(nums, 2)
     result = [find_common_digit(comb) for comb in combs]
     return sum(result)
 
 
 if __name__ == '__main__':
-    start = datetime.now()
     print(main())
-    print((datetime.now() - start).total_seconds())
