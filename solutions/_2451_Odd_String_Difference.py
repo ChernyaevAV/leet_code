@@ -29,6 +29,7 @@ class TestCase:
         answer = "bob"
         assert Solution().oddString(words) == answer
 
+
 if __name__ == '__main__':
     # words = ["adc", "wzy", "abc"]
     # print(Solution().oddString(words))

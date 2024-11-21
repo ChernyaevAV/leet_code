@@ -1,15 +1,35 @@
-text = input()
+from string import ascii_lowercase, ascii_uppercase
 
-translit = {'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E',
-            'Ё': 'E', 'Ж': 'Zh', 'З': 'Z', 'И': 'I', 'Й': 'I', 'К': 'K',
-            'Л': 'L', 'М': 'M', 'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R',
-            'С': 'S', 'Т': 'T', 'У': 'U', 'Ф': 'F', 'Х': 'Kh', 'Ц': 'Tc',
-            'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Shch', 'Ы': 'Y', 'Э': 'E', 'Ю': 'Iu',
-            'Я': 'Ia', 'ь': '', 'Ь': '', 'ъ': '', 'Ъ': ''}
+letters = ascii_lowercase
 
-for s in text:
-    text = text.replace(s, translit.get(s, s))
-    text = text.replace(s, translit.get(t := s.upper(), s).lower())
 
-print(text)
+def read_file(filename):
+    with open(filename, "r") as file:
+        return file.read()
 
+
+def save_to_file(filename, text):
+    with open(filename, "w") as file:
+        file.write(text)
+
+
+def code_text(text, step):
+    coding_text = ""
+    for s in text:
+        if s in ascii_lowercase:
+            n = (ascii_lowercase.index(s) + step) % len(ascii_lowercase)
+            coding_text += ascii_lowercase[n]
+        elif s in ascii_uppercase:
+            n = (ascii_uppercase.index(s) + step) % len(ascii_uppercase)
+            coding_text += ascii_uppercase[n]
+        else:
+            coding_text += s
+    return coding_text
+
+
+if __name__ == '__main__':
+
+    text = read_file("public.txt")
+    step = int(input())
+    coded_text = code_text(text, step)
+    save_to_file("private.txt", coded_text)
